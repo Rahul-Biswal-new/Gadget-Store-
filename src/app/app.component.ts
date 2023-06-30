@@ -22,6 +22,12 @@ export class AppComponent implements OnInit {
     this.loadCart();
   }
 
+
+  redirectToSale(){
+    this.router.navigateByUrl("/sale");
+  }
+
+  
   loadCart(){
     this.subTotal = 0;
     this.productService.getCartItemByCustomerId(1).subscribe((res:any) =>{
@@ -35,7 +41,4 @@ export class AppComponent implements OnInit {
   }
 
 
-  redirectToSale(){
-    this.router.navigateByUrl("sale");
-  }
 }
