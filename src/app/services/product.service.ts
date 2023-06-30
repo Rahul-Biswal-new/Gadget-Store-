@@ -1,21 +1,25 @@
 import { Injectable, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService  {
-
+  public cartAddedSubject = new Subject<boolean>();
   constructor( private http: HttpClient) { }
 
 
   getAllProducts(): Observable<any[]>{
     debugger;
-    return this.http.get<any[]>('http://onlinetestapi.gerasim.in/api/Ecomm/GetAllProducts')
+    return this.http.get<any[]>('http://onlinetestapi.gerasim.in/api/Ecomm/GetAllProducts');
   }
 
   addItemToCart(obj: any): Observable<any>{
     debugger;
-    return this.http.post<any>('http://onlinetestapi.gerasim.in/api/Ecomm/GetAllProducts', obj);
+    return this.http.post<any>('http://onlinetestapi.gerasim.in/api/Ecomm/AddToCart', obj);
+  }
+
+  getCartItemByCustomerId(customerId: number): Observable<any[]>{
+    return this.http.get<any[]>('http://onlinetestapi.gerasim.in/api/Ecomm/GetCartProductsByCustomerId='+ customerId);
   }
 }
