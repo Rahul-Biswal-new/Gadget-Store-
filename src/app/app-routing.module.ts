@@ -6,7 +6,7 @@ import { SaleComponent } from './pages/sale/sale.component';
 
 const routes: Routes = [
   {
-    path: '**',
+    path: '',
     // pathMatch:'full',
     component: HomeComponent
   },

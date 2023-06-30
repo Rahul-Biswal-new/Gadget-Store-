@@ -14,17 +14,17 @@ export class HomeComponent implements OnInit {
     "CustId": 1,
     "ProductId": 0,
     "Quantity": 0,
-    "AddedDate": "2023-04-27T07:12:40.926Z"
+    "AddedDate": "2023-06-17T07:10:50.224Z"
   };
   constructor(private ProductService: ProductService){}
    
   ngOnInit():void {
-    debugger;  
+    // debugger;  
     this.loadAllProducts();
   }
 
   loadAllProducts(){
-    debugger;
+    // debugger;
     this.ProductService.getAllProducts().subscribe((res:any) =>{
       this.productList = res.data;
       console.log(this.productList,"######Product API");
@@ -32,15 +32,16 @@ export class HomeComponent implements OnInit {
   }
 
   addItemToCart(productID: number) {
-    debugger;
-    // this.cartObj.productID = productID;
-    productID = this.cartObj.productID;
+    // debugger;
+    this.cartObj.productID = productID;
+    // productID = this.cartObj.productID;
 
-    // console.log(productID);
+    console.log(productID,"####productID");
     this.ProductService.addItemToCart(this.cartObj).subscribe((res:any) =>{
       if(res.result){
         alert("product added successfully");
         this.ProductService.cartAddedSubject.next(true);
+        
       }
 
     })
